@@ -1,0 +1,134 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-heading: "Space Grotesk", var(--font-sans);
+  --font-display: "Space Grotesk", var(--font-sans);
+
+  /* Clipit.ai palette */
+  --color-void: #0B0B12;
+  --color-panel: #13131D;
+  --color-edge: #1E1E2C;
+  --color-ink: #D4D4DC;
+  --color-muted: #5C5C72;
+  --color-signal: #00D9A0;
+  --color-signal-dim: #00D9A020;
+  --color-amber: #F0A830;
+  --color-amber-dim: #F0A83020;
+  --color-danger: #E84057;
+  --color-danger-dim: #E8405720;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+
+  /* shadcn overrides */
+  --color-sidebar-ring: var(--edge);
+  --color-sidebar-border: var(--edge);
+  --color-sidebar-accent-foreground: var(--ink);
+  --color-sidebar-accent: var(--panel);
+  --color-sidebar-primary-foreground: var(--void);
+  --color-sidebar-primary: var(--signal);
+  --color-sidebar-foreground: var(--ink);
+  --color-sidebar: var(--void);
+  --color-chart-5: var(--signal);
+  --color-chart-4: var(--amber);
+  --color-chart-3: var(--muted);
+  --color-chart-2: var(--edge);
+  --color-chart-1: var(--panel);
+  --color-ring: var(--signal);
+  --color-input: var(--edge);
+  --color-border: var(--edge);
+  --color-destructive: var(--danger);
+  --color-accent-foreground: var(--ink);
+  --color-accent: var(--panel);
+  --color-muted-foreground: var(--muted);
+  --color-muted: var(--panel);
+  --color-secondary-foreground: var(--ink);
+  --color-secondary: var(--edge);
+  --color-primary-foreground: var(--void);
+  --color-primary: var(--signal);
+  --color-popover-foreground: var(--ink);
+  --color-popover: var(--panel);
+  --color-card-foreground: var(--ink);
+  --color-card: var(--panel);
+}
+
+:root {
+  --background: var(--color-void);
+  --foreground: var(--color-ink);
+  --card: var(--color-panel);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-panel);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-signal);
+  --primary-foreground: var(--color-void);
+  --secondary: var(--color-edge);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-panel);
+  --muted-foreground: var(--color-muted);
+  --accent: var(--color-panel);
+  --accent-foreground: var(--color-ink);
+  --destructive: var(--color-danger);
+  --border: var(--color-edge);
+  --input: var(--color-edge);
+  --ring: var(--color-signal);
+  --radius: 4px;
+  --sidebar: var(--color-void);
+  --sidebar-foreground: var(--color-ink);
+  --sidebar-primary: var(--color-signal);
+  --sidebar-primary-foreground: var(--color-void);
+  --sidebar-accent: var(--color-panel);
+  --sidebar-accent-foreground: var(--color-ink);
+  --sidebar-border: var(--color-edge);
+  --sidebar-ring: var(--color-edge);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ─── Custom utilities ─── */
+
+/* Pipeline stage connector line */
+.pipeline-connector {
+  position: relative;
+}
+.pipeline-connector::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 100%;
+  height: 1px;
+  background: var(--color-edge);
+  transform: translateY(-50%);
+}
+.pipeline-connector:last-child::after {
+  display: none;
+}
+
+/* Subtle glow for active elements */
+.glow-signal {
+  box-shadow: 0 0 12px var(--color-signal-dim), 0 0 24px var(--color-signal-dim);
+}
+
+/* Smooth transitions */
+.transition-theme {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
